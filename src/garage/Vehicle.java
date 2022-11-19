@@ -72,7 +72,7 @@ public abstract class Vehicle
         return -1;
     };
     public abstract void parkVehicle(Vehicle[] parkingLot);
-    public abstract void unParkVehicle(Vehicle[] parkingLot);
+    //public abstract void unParkVehicle(Vehicle[] parkingLot);
 
     public List<String> listVehicleByType(String type, Vehicle[] vehicles)
     {

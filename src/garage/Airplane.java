@@ -2,7 +2,7 @@ package garage;
 
 import java.util.Arrays;
 
-public class Airplane extends Vehicle
+public class Airplane extends Vehicle implements CanFly
 {
     String[] drinkMenu;
     boolean wings;
@@ -22,15 +22,10 @@ public class Airplane extends Vehicle
     @Override
     public void parkVehicle(Vehicle[] parkingLot)
     {
-        System.out.println("Vehicle not allowed to park at the garage");
-
+        flying();
     }
 
-    @Override
-    public void unParkVehicle(Vehicle[] parkingLot)
-    {
-        System.out.println("Vehicle is not parked.");
-    }
+
 
     @Override
     public String toString()
@@ -44,5 +39,11 @@ public class Airplane extends Vehicle
                 ", engineType='" + engineType + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    @Override
+    public void flying()
+    {
+        System.out.println("You sadly fly around wishing you where a park-able car...");
     }
 }

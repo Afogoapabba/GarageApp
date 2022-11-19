@@ -1,2 +1,6 @@
-package garage;public interface CanFloat {
+package garage;
+
+public interface CanFloat
+{
+    void floating();
 }

@@ -1,2 +1,6 @@
-package garage;public interface CanFly {
+package garage;
+
+public interface CanFly
+{
+    void flying();
 }

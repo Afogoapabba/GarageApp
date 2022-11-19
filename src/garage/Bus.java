@@ -11,4 +11,8 @@ public class Bus extends RoadLegalVehicle
         this.onBoardToilets = onBoardToilets;
         this.hasLuggageSpace = hasLuggageSpace;
     }
+
+    public Bus()
+    {
+    }
 }

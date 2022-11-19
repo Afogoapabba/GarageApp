@@ -32,15 +32,20 @@ public class RoadLegalVehicle extends Vehicle
 
     }
 
-    @Override
+/*    @Override
     public void unParkVehicle(Vehicle[] ParkingLot)
     {
+        for (int i = 0; i < ParkingLot.length; i++)
+        {
+
+
+        }
         startEngine();
         accelerate();
         brake();
         stopEngine();
-        System.out.println("The "+getColor()+" "+getType()+" has been un-parked.");
-    }
+        System.out.println("Here is the "+getColor()+" "+getType()+" with RegNo:"+getRegNo());
+    }*/
 
 
     public void accelerate()

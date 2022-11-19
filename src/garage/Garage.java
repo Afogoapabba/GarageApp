@@ -37,5 +37,15 @@ public class Garage
         System.out.println("Could not find vehicle.");
         return null;
     }
+    public void unParkVehicle(Vehicle vehicle)
+    {
+        for (int i = 0; i < this.parkingLot.length; i++)
+        {
+
+
+        }
+
+        System.out.println("Here is the "+vehicle.getColor()+" "+vehicle.getType()+" with RegNo:"+vehicle.getRegNo());
+    }
 
 }

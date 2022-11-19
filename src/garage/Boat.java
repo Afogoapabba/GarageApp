@@ -1,6 +1,6 @@
 package garage;
 
-public class Boat extends Vehicle
+public class Boat extends Vehicle implements CanFloat
 {
     boolean hasSail;
     int sleepingSpots;
@@ -12,17 +12,17 @@ public class Boat extends Vehicle
         this.sleepingSpots = sleepingSpots;
     }
 
+    public Boat()
+    {
+
+    }
+
     @Override
     public void parkVehicle(Vehicle[] parkingLot)
     {
-
+        floating();
     }
 
-    @Override
-    public void unParkVehicle(Vehicle[] parkingLot)
-    {
-
-    }
 
     @Override
     public String toString()
@@ -36,5 +36,11 @@ public class Boat extends Vehicle
                 ", engineType='" + engineType + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    @Override
+    public void floating()
+    {
+        System.out.println("You sadly float around wishing you where a park-able car...");
     }
 }

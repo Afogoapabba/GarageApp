@@ -9,4 +9,8 @@ public class Motorcycle extends RoadLegalVehicle
         super(regNo, color, yearOfManufacturing, engineType, type);
         this.hasSideCar = hasSideCar;
     }
+
+    public Motorcycle()
+    {
+    }
 }
