@@ -5,9 +5,9 @@ public class Boat extends Vehicle implements CanFloat
     boolean hasSail;
     int sleepingSpots;
 
-    public Boat(String regNo, String color, int yearOfManufacturing, String engineType, String type, boolean hasSail, int sleepingSpots)
+    public Boat(String color, String engineType, String type, boolean hasSail, int sleepingSpots)
     {
-        super(regNo, color, yearOfManufacturing, engineType, type);
+        super(color, engineType, type);
         this.hasSail = hasSail;
         this.sleepingSpots = sleepingSpots;
     }
@@ -18,9 +18,11 @@ public class Boat extends Vehicle implements CanFloat
     }
 
     @Override
-    public void park(Vehicle[] parkingLot ,int parkingSpot)
+    public void park(Vehicle[] parkingLot ,int parkingSpot ,boolean silent)
+
     {
         floating();
+        System.out.println("Vehicle not allowed for parking. Not added to parking-queue");
     }
 
 

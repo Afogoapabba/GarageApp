@@ -40,10 +40,10 @@ public class Garage
         System.out.println("Could not find vehicle.");
         return null;
     }
-    public void parkVehicle(Vehicle vehicle)
+    public void parkVehicle(Vehicle vehicle,boolean silent)
     {
         int availableSpot= getAvailableSpot();
-        vehicle.park(this.parkingLot,availableSpot);
+        vehicle.park(this.parkingLot,availableSpot,silent);
 
 
     }
@@ -53,20 +53,29 @@ public class Garage
         {
             if (this.parkingLot[i].equals(vehicle))
             {
+                //System.out.println("Here is the "+vehicle.getColor()+" "+vehicle.getType()+" with RegNo:"+vehicle.getRegNo());
                 this.parkingLot[i] = null;
+                return;
             }
 
         }
 
-        System.out.println("Here is the "+vehicle.getColor()+" "+vehicle.getType()+" with RegNo:"+vehicle.getRegNo());
+
     }
     public void listVehicles ()
     {
-        for (int i = 0; i < this.parkingLot.length ; i++)
+        System.out.println("Available vehicles.");
+        for (int i = 0; i < this.parkingLot.length; i++)
         {
             if (this.parkingLot[i] != null)
             {
                 System.out.println(this.parkingLot[i].toString());
+                System.out.println("--------------------------------------------------------------------------------");
+            }
+            else
+            {
+                System.out.println("Found no vehicles");
+                return;
             }
 
         }

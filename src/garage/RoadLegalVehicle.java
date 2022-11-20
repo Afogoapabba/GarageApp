@@ -2,9 +2,9 @@ package garage;
 
 public class RoadLegalVehicle extends Vehicle
 {
-    public RoadLegalVehicle(String regNo, String color, int yearOfManufacturing, String engineType, String type)
+    public RoadLegalVehicle(String color, String engineType, String type)
     {
-        super(regNo, color, yearOfManufacturing, engineType, type);
+        super( color, engineType, type);
     }
 
     public RoadLegalVehicle()
@@ -13,16 +13,21 @@ public class RoadLegalVehicle extends Vehicle
     }
 
 
-    public void park(Vehicle[] parkingLot, int parkingSpot)
+    public void park(Vehicle[] parkingLot, int parkingSpot,boolean silent)
     {
-
-        startEngine();
-        accelerate();
-        brake();
-        stopEngine();
+        if (!silent)
+        {
+            startEngine();
+            accelerate();
+            brake();
+            stopEngine();
+            System.out.println("The "+getColor()+" "+getType()+" "+this.getClass().getSimpleName()+ " has been parked.");
+        }
+        System.out.println(this.getClass().getSimpleName()+" Created.");
         parkingLot[parkingSpot] = this;
 
-        System.out.println("The "+getColor()+" "+getType()+" "+this.getClass().getSimpleName()+ " has been parked.");
+
+
 
 
     }
@@ -44,7 +49,7 @@ public class RoadLegalVehicle extends Vehicle
     @Override
     public String toString()
     {
-        return "RoadLegalVehicle{" +
+        return "RoadLegalVehicle {" +
                 "regNo='" + regNo + '\'' +
                 ", color='" + color + '\'' +
                 ", yearOfManufacturing=" + yearOfManufacturing +

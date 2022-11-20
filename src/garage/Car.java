@@ -5,9 +5,9 @@ public class Car extends RoadLegalVehicle
     boolean hasAppleCarPlay;
     boolean hasAndroidAuto;
 
-    public Car(String regNo, String color, int yearOfManufacturing, String engineType, String type, boolean hasAppleCarPlay, boolean hasAndroidAuto)
+    public Car( String color, String engineType, String type, boolean hasAppleCarPlay, boolean hasAndroidAuto)
     {
-        super(regNo, color, yearOfManufacturing, engineType, type);
+        super(color, engineType, type);
         this.hasAppleCarPlay = hasAppleCarPlay;
         this.hasAndroidAuto = hasAndroidAuto;
     }
@@ -19,7 +19,7 @@ public class Car extends RoadLegalVehicle
     @Override
     public String toString()
     {
-        return "Car{" +
+        return "Car {" +
                 "hasAppleCarPlay=" + hasAppleCarPlay +
                 ", hasAndroidAuto=" + hasAndroidAuto +
                 ", regNo='" + regNo + '\'' +

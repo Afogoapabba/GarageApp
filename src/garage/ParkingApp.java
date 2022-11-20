@@ -1,5 +1,6 @@
 package garage;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ParkingApp
@@ -8,22 +9,33 @@ public class ParkingApp
     //¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
     public static void main(String[] args)
     {
+        Scanner scanner = new Scanner(System.in);
         Garage myGarage = new Garage(20);
         Garage outSideQueue = new Garage(10);
-        Car testCar = new Car("abc123","Red",2022,"Electric","Sport",true,true);
-        testCar.park(outSideQueue.parkingLot, 0);
+        Bus testBus = new Bus("Grey","Diesel","Public transport",0,false);
+        Car testCar = new Car("Orange","Electric","Sport",true,true);
+        Motorcycle testMotorcycle = new Motorcycle("Red","4-stroke","Enduro",false);
 
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Creating park-able test-subjects..##################");
+        outSideQueue.parkVehicle(testBus,true);
+        outSideQueue.parkVehicle(testCar,true);
+        outSideQueue.parkVehicle(testMotorcycle,true);
+        System.out.println("#########################################");
 
-
-        boolean run = true;
+        String menu = "What would you like to do?"
+                + "\n1: Create a vehicle."
+                + "\n2: Park a vehicle."
+                + "\n3: Un-park a vehicle."
+                + "\n4: Show vehicles in queue for parking"
+                + "\n5: Show vehicles in the parking lot"
+                + "\n0: Exit";
 
         int input;
 
 
         while (true)
         {
-            ParkingUI.parkingMenu();
+            ParkingUI.parkingMenu(menu);
             if (scanner.hasNextInt())
             {
                 input = scanner.nextInt();
@@ -41,29 +53,29 @@ public class ParkingApp
                         break;
                     }
                     System.out.println(outSideQueue.getAvailableSpot());
-                    newVehicle.park(outSideQueue.parkingLot, outSideQueue.getAvailableSpot());
-
+                    newVehicle.park(outSideQueue.parkingLot, outSideQueue.getAvailableSpot(),true);
                     break;
                 case 2:// Park vehicle
-
                     outSideQueue.listVehicles();
                     String regNo = ParkingUI.stringInput("Enter Reg No");
                     Vehicle vehicleToPark = outSideQueue.getVehicleByRegNo(regNo);
-
-                    myGarage.parkVehicle(vehicleToPark);
-
+                    myGarage.parkVehicle(vehicleToPark,false);
+                    outSideQueue.unParkVehicle(vehicleToPark);
                     break;
                 case 3:// Un-park vehicle
-
                     myGarage.unParkVehicle(myGarage.getVehicleByRegNo(ParkingUI.stringInput("Enter the registration number of the vehicle")));
-
+                    break;
+                case 4:// List vehicles in parking queue
+                    outSideQueue.listVehicles();
+                    break;
+                case 5:// List vehicles in parking queue
+                    myGarage.listVehicles();
                     break;
                 case 0:// Exit.
                     scanner.close();
                     System.exit(0);
                     break;
                 default:
-
                     scanner.nextLine();
                     System.out.println("no valid input found.");
                     break;
@@ -88,10 +100,7 @@ public class ParkingApp
         int input;
 
 
-
-        int attempt = 0;
-
-        while (attempt < 3)
+        while (true)
         {
             if (scanner.hasNextInt())
             {
@@ -107,43 +116,43 @@ public class ParkingApp
                     Airplane airplane = new Airplane();
                     airplane.drinkMenu = new String[]{"Wine","Beer","Vodka","Raki"};
                     ParkingUI.setGeneric(airplane);
-                    break;
+                    return airplane;
+
                 case 2:// Boat
                     Boat boat = new Boat();
                     boat.hasSail = ParkingUI.booleanInput("Does the boat have a sail? Y/N");
                     boat.sleepingSpots = ParkingUI.intInput("How many sleeping spots?");
                     ParkingUI.setGeneric(boat);
-                    break;
+                    return boat;
                 case 3:// Bus
                     Bus bus = new Bus();
                     bus.hasLuggageSpace = ParkingUI.booleanInput("Does the bus have luggage space? Y/N");
                     bus.onBoardToilets = ParkingUI.intInput("How many onboard toilets?");
                     ParkingUI.setGeneric(bus);
-                    break;
+                    return bus;
                 case 4:// Car
                     Car car = new Car();
                     car.hasAndroidAuto = ParkingUI.booleanInput("Does it have Android Auto? Y/N");
                     car.hasAppleCarPlay = ParkingUI.booleanInput("Does it have Apple CarPlay? Y/N");
                     ParkingUI.setGeneric(car);
-                    break;
+                    return car;
                 case 5:// MC
                     Motorcycle mc = new Motorcycle();
-                    mc.hasSideCar = ParkingUI.booleanInput("Does it have a sidecar?");
+                    mc.hasSideCar = ParkingUI.booleanInput("Does it have a sidecar? Y/N");
                     ParkingUI.setGeneric(mc);
-                    break;
+                    return mc;
                 case 0:// Exit
                     return null;
 
                 default:
                     scanner.nextLine(); //clear scanner
-                    System.out.println(input+" was not a valid choice. Attempt: "+attempt+" of 3.");
+                    System.out.println(input+" was not a valid choice.");
             }
         }
 
 
 
 
-        return null;
     }
 
 

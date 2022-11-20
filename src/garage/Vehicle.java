@@ -12,16 +12,16 @@ public abstract class Vehicle
     String engineType;
     String type;
 
-    public Vehicle(String regNo, String color, int yearOfManufacturing, String engineType, String type)
+    public Vehicle( String color, String engineType, String type)
     {
         Random rnd = new Random();
-        this.regNo = "ABC"+rnd.nextInt(899) +100; //Does not ensure uniqueness but for mock regno.
+        this.regNo = "ABC"+(rnd.nextInt(899) +100); //Does not ensure uniqueness but for mock regno.
         this.color = color;
         this.yearOfManufacturing = LocalDate.now().getYear();
         this.engineType = engineType;
         this.type = type;
 
-        ;
+
     }
 
     public Vehicle()
@@ -60,7 +60,7 @@ public abstract class Vehicle
     }
 
 
-    public abstract void park(Vehicle[] parkingLot ,int parkingSpot);
+    public abstract void park(Vehicle[] parkingLot ,int parkingSpot , boolean silent);
 
 
     public List<String> listVehicleByType(String type, Vehicle[] vehicles)
@@ -81,7 +81,7 @@ public abstract class Vehicle
     @Override
     public String toString()
     {
-        return "Vehicle{" +
+        return "Vehicle {" +
                 "regNo='" + regNo + '\'' +
                 ", color='" + color + '\'' +
                 ", yearOfManufacturing=" + yearOfManufacturing +

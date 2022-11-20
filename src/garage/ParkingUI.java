@@ -36,7 +36,8 @@ public class ParkingUI
                 return "Green";
 
             default:
-                return "Base-Colored";
+                System.out.println("invalid input selecting base-coat");
+                return "Base-coat";
         }
 
     }
@@ -57,20 +58,28 @@ public class ParkingUI
     public static int intInput(String prompt) // Allows only positive integers
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(prompt);
-        int input = scanner.nextInt();
-        int attempt =0;
-        while(attempt < 3)
+
+        int input = -1;
+
+
+
+        while(true)
         {
+            System.out.println(prompt);
+            if (scanner.hasNextInt())
+            {
+                input = scanner.nextInt();
+            }
             if (input >= 0)
             {
                 return input;
             }
             else
             {
-                attempt++;
+
                 scanner.nextLine(); //clear scanner
-                System.out.println("invalid input. Attempt: "+attempt+" of 3");
+                System.out.println("invalid input.");
+                break;
             }
 
         }
@@ -83,10 +92,11 @@ public class ParkingUI
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
-        String input = scanner.nextLine().toUpperCase();
+
         int attempt = 0;
         while (attempt <3)
         {
+            String input = scanner.nextLine().toUpperCase();
             if (input.equals("Y"))
             {
                 return true;
@@ -113,16 +123,22 @@ public class ParkingUI
     {
         Scanner scanner = new Scanner(System.in);
         int currentYear= LocalDate.now().getYear();
+        int input =-1;
         System.out.println("Acceptable year range = 1900-"+ currentYear);
-        int input = scanner.nextInt();
+        if (scanner.hasNextInt())
+        {
+            input = scanner.nextInt();
+        }
+
+
         if (input>1899 && input<=currentYear)
         {
             return input;
         }
         scanner.nextLine(); //clear scanner
-        System.out.println("no valid input found, returning -1");
+        System.out.println("no valid input found, returning "+currentYear);
 
-        return -1;
+        return currentYear;
     }
     public static void setGeneric(Vehicle vehicle)
     {
@@ -133,13 +149,9 @@ public class ParkingUI
         System.out.println(vehicle.toString());
 
     }
-    public static void parkingMenu()
+    public static void parkingMenu(String menu)
     {
-        System.out.println("What would you like to do?"
-                + "\n1: Create a vehicle."
-                + "\n2: Park a vehicle."
-                + "\n3: Un-park a vehicle."
-                + "\n0: Exit");
+        System.out.println(menu);
     }
 
 }

@@ -7,9 +7,10 @@ public class Airplane extends Vehicle implements CanFly
     String[] drinkMenu;
     boolean wings;
 
-    public Airplane(String regNo, String color, int yearOfManufacturing, String engineType, String type)
+
+    public Airplane(String color, String engineType, String type)
     {
-        super(regNo, color, yearOfManufacturing, engineType, type);
+        super(color, engineType, type);
         this.drinkMenu = new String[]{"Wine","Beer","Vodka","Raki"};
         this.wings = true;
     }
@@ -20,9 +21,11 @@ public class Airplane extends Vehicle implements CanFly
     }
 
     @Override
-    public void park(Vehicle[] parkingLot ,int parkingSpot)
+    public void park(Vehicle[] parkingLot ,int parkingSpot,boolean silent)
+
     {
         flying();
+        System.out.println("Vehicle not allowed for parking. Not added to parking-queue");
     }
 
 
