@@ -15,4 +15,18 @@ public class Car extends RoadLegalVehicle
     public Car()
     {
     }
+
+    @Override
+    public String toString()
+    {
+        return "Car{" +
+                "hasAppleCarPlay=" + hasAppleCarPlay +
+                ", hasAndroidAuto=" + hasAndroidAuto +
+                ", regNo='" + regNo + '\'' +
+                ", color='" + color + '\'' +
+                ", yearOfManufacturing=" + yearOfManufacturing +
+                ", engineType='" + engineType + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

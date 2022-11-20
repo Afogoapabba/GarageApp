@@ -20,7 +20,7 @@ public class Airplane extends Vehicle implements CanFly
     }
 
     @Override
-    public void parkVehicle(Vehicle[] parkingLot)
+    public void park(Vehicle[] parkingLot ,int parkingSpot)
     {
         flying();
     }

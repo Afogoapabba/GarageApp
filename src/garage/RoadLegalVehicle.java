@@ -12,40 +12,22 @@ public class RoadLegalVehicle extends Vehicle
         super();
     }
 
-    @Override
-    public void parkVehicle(Vehicle[] parkingLot)
+
+    public void park(Vehicle[] parkingLot, int parkingSpot)
     {
-        int parkingSpot = findParkingSpot(parkingLot);
-        if (parkingSpot<0)
-        {
-            System.out.println("no available parking spots...");
-            return;
-        }
+
         startEngine();
         accelerate();
         brake();
         stopEngine();
         parkingLot[parkingSpot] = this;
 
-        System.out.println("The "+getColor()+" "+getType()+" has been parked at the spot labeled: "+parkingSpot);
+        System.out.println("The "+getColor()+" "+getType()+" "+this.getClass().getSimpleName()+ " has been parked.");
 
 
     }
 
-/*    @Override
-    public void unParkVehicle(Vehicle[] ParkingLot)
-    {
-        for (int i = 0; i < ParkingLot.length; i++)
-        {
 
-
-        }
-        startEngine();
-        accelerate();
-        brake();
-        stopEngine();
-        System.out.println("Here is the "+getColor()+" "+getType()+" with RegNo:"+getRegNo());
-    }*/
 
 
     public void accelerate()

@@ -11,19 +11,22 @@ public class Garage
     Vehicle[] parkingLot;
 
 
-    public void checkAvailableSpots()
+    public int getAvailableSpot()
     {
-        int availableSpots = 0;
+        int availableSpot =-1;
         for (Vehicle vehicle: parkingLot )
-        {
-            if (vehicle==null)
+            for (int i = 0; i < parkingLot.length; i++)
             {
-                availableSpots++;
+                if (parkingLot[i] == null)
+                {
+                    availableSpot = i;
+                    return availableSpot;
+                }
             }
-        }
-        System.out.println("¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤");
-        System.out.println("Available spots: "+ availableSpots);
-        System.out.println("¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤");
+        return availableSpot;
+
+
+
     }
     public Vehicle getVehicleByRegNo(String regNo)
     {
@@ -37,15 +40,38 @@ public class Garage
         System.out.println("Could not find vehicle.");
         return null;
     }
+    public void parkVehicle(Vehicle vehicle)
+    {
+        int availableSpot= getAvailableSpot();
+        vehicle.park(this.parkingLot,availableSpot);
+
+
+    }
     public void unParkVehicle(Vehicle vehicle)
     {
         for (int i = 0; i < this.parkingLot.length; i++)
         {
-
+            if (this.parkingLot[i].equals(vehicle))
+            {
+                this.parkingLot[i] = null;
+            }
 
         }
 
         System.out.println("Here is the "+vehicle.getColor()+" "+vehicle.getType()+" with RegNo:"+vehicle.getRegNo());
     }
+    public void listVehicles ()
+    {
+        for (int i = 0; i < this.parkingLot.length ; i++)
+        {
+            if (this.parkingLot[i] != null)
+            {
+                System.out.println(this.parkingLot[i].toString());
+            }
+
+        }
+
+    }
+
 
 }

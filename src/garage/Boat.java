@@ -18,7 +18,7 @@ public class Boat extends Vehicle implements CanFloat
     }
 
     @Override
-    public void parkVehicle(Vehicle[] parkingLot)
+    public void park(Vehicle[] parkingLot ,int parkingSpot)
     {
         floating();
     }

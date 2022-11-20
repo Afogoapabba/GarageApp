@@ -1,8 +1,5 @@
 package garage;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ParkingApp
@@ -11,17 +8,20 @@ public class ParkingApp
     //¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
     public static void main(String[] args)
     {
-        Garage myGarage = new Garage(5);
+        Garage myGarage = new Garage(20);
+        Garage outSideQueue = new Garage(10);
+        Car testCar = new Car("abc123","Red",2022,"Electric","Sport",true,true);
+        testCar.park(outSideQueue.parkingLot, 0);
 
         Scanner scanner = new Scanner(System.in);
 
 
         boolean run = true;
-        int attempt =0;
-        int input;
-        ArrayList<Vehicle> unParkedVehicles = new ArrayList<>();
 
-        while (attempt < 3)
+        int input;
+
+
+        while (true)
         {
             ParkingUI.parkingMenu();
             if (scanner.hasNextInt())
@@ -36,23 +36,36 @@ public class ParkingApp
             {
                 case 1: // Create vehicle
                     var newVehicle= createVehicle(); //create a vehicle
-                    unParkedVehicles.add(newVehicle);
+                    if (newVehicle ==null)
+                    {
+                        break;
+                    }
+                    System.out.println(outSideQueue.getAvailableSpot());
+                    newVehicle.park(outSideQueue.parkingLot, outSideQueue.getAvailableSpot());
+
                     break;
                 case 2:// Park vehicle
 
+                    outSideQueue.listVehicles();
+                    String regNo = ParkingUI.stringInput("Enter Reg No");
+                    Vehicle vehicleToPark = outSideQueue.getVehicleByRegNo(regNo);
+
+                    myGarage.parkVehicle(vehicleToPark);
 
                     break;
                 case 3:// Un-park vehicle
+
                     myGarage.unParkVehicle(myGarage.getVehicleByRegNo(ParkingUI.stringInput("Enter the registration number of the vehicle")));
+
                     break;
                 case 0:// Exit.
                     scanner.close();
                     System.exit(0);
                     break;
                 default:
-                    attempt++;
+
                     scanner.nextLine();
-                    System.out.println("no valid input found. Attempt"+attempt+" of 3." );
+                    System.out.println("no valid input found.");
                     break;
             }
         }
@@ -119,7 +132,8 @@ public class ParkingApp
                     ParkingUI.setGeneric(mc);
                     break;
                 case 0:// Exit
-                    break;
+                    return null;
+
                 default:
                     scanner.nextLine(); //clear scanner
                     System.out.println(input+" was not a valid choice. Attempt: "+attempt+" of 3.");
@@ -131,6 +145,10 @@ public class ParkingApp
 
         return null;
     }
+
+
+
+
 
 
 }

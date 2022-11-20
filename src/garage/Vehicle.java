@@ -1,6 +1,5 @@
 package garage;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
@@ -60,19 +59,9 @@ public abstract class Vehicle
         return type;
     }
 
-    public int findParkingSpot(Vehicle[] parkingLot)
-    {
-        for (int i = 0; i <parkingLot.length ; i++)
-        {
-            if (parkingLot[i] == null)
-            {
-                return i;
-            }
-        }
-        return -1;
-    };
-    public abstract void parkVehicle(Vehicle[] parkingLot);
-    //public abstract void unParkVehicle(Vehicle[] parkingLot);
+
+    public abstract void park(Vehicle[] parkingLot ,int parkingSpot);
+
 
     public List<String> listVehicleByType(String type, Vehicle[] vehicles)
     {
@@ -89,5 +78,15 @@ public abstract class Vehicle
         System.out.println("Engine stops..");
     }
 
-
+    @Override
+    public String toString()
+    {
+        return "Vehicle{" +
+                "regNo='" + regNo + '\'' +
+                ", color='" + color + '\'' +
+                ", yearOfManufacturing=" + yearOfManufacturing +
+                ", engineType='" + engineType + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
