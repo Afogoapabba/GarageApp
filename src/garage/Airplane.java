@@ -25,7 +25,9 @@ public class Airplane extends Vehicle implements CanFly
 
     {
         flying();
+        System.out.println();
         System.out.println("Vehicle not allowed for parking. Not added to parking-queue");
+        System.out.println();
     }
 
 

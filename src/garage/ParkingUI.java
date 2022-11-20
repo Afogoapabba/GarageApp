@@ -9,6 +9,8 @@ public class ParkingUI
     public static String pickColor()
     {
         Scanner scanner = new Scanner(System.in);
+        int input=-1;
+
 
         System.out.println("Choose a color"
                 + "\n1: White"
@@ -17,7 +19,11 @@ public class ParkingUI
                 + "\n4: Red"
                 + "\n5: Green");
 
-        int input = scanner.nextInt();
+        if (scanner.hasNextInt())
+        {
+            input = scanner.nextInt();
+        }
+
         switch (input)
         {
             case 1:
@@ -93,8 +99,8 @@ public class ParkingUI
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
 
-        int attempt = 0;
-        while (attempt <3)
+
+        while (true)
         {
             String input = scanner.nextLine().toUpperCase();
             if (input.equals("Y"))
@@ -107,15 +113,10 @@ public class ParkingUI
             }
             else
             {
-                attempt++;
-                scanner.nextLine(); //clear scanner
-                System.out.println("invalid input. 'Y' or 'N'  only valid inputs. Attempt: "+attempt+" of 3");
 
+                System.out.println("invalid input. 'Y' or 'N'  only valid inputs");
             }
         }
-        scanner.nextLine(); //clear scanner
-        System.out.println("no valid input found, returning false");
-        return false;
 
 
     }

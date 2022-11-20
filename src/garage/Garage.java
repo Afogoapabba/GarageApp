@@ -32,6 +32,7 @@ public class Garage
     {
         for (Vehicle vehicle: parkingLot)
         {
+            if (vehicle ==null) {break;}
             if (vehicle.regNo.equals(regNo))
             {
                 return  vehicle;
@@ -64,21 +65,24 @@ public class Garage
     }
     public void listVehicles ()
     {
-        System.out.println("Available vehicles.");
+        System.out.println("Available vehicles:");
+
+        int count = 0;
         for (int i = 0; i < this.parkingLot.length; i++)
         {
             if (this.parkingLot[i] != null)
             {
                 System.out.println(this.parkingLot[i].toString());
                 System.out.println("--------------------------------------------------------------------------------");
-            }
-            else
-            {
-                System.out.println("Found no vehicles");
-                return;
+                count++;
             }
 
         }
+        if (count <1)
+        {
+            System.out.println("### No vehicles was found ###");
+        }
+
 
     }
 

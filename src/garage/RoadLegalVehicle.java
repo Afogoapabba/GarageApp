@@ -23,12 +23,7 @@ public class RoadLegalVehicle extends Vehicle
             stopEngine();
             System.out.println("The "+getColor()+" "+getType()+" "+this.getClass().getSimpleName()+ " has been parked.");
         }
-        System.out.println(this.getClass().getSimpleName()+" Created.");
         parkingLot[parkingSpot] = this;
-
-
-
-
 
     }
 

@@ -22,7 +22,9 @@ public class Boat extends Vehicle implements CanFloat
 
     {
         floating();
+        System.out.println();
         System.out.println("Vehicle not allowed for parking. Not added to parking-queue");
+        System.out.println();
     }
 
 
