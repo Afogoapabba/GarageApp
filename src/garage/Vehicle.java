@@ -63,12 +63,6 @@ public abstract class Vehicle
     public abstract void park(Vehicle[] parkingLot ,int parkingSpot , boolean silent);
 
 
-    public List<String> listVehicleByType(String type, Vehicle[] vehicles)
-    {
-        return null;
-    }
-
-
     public void startEngine()
     {
         System.out.println("Engine starts..");

@@ -8,10 +8,9 @@ public class ParkingUI
 
     public static String pickColor()
     {
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         int input=-1;
-
-
         System.out.println("Choose a color"
                 + "\n1: White"
                 + "\n2: Black"
@@ -54,7 +53,7 @@ public class ParkingUI
         String input = scanner.nextLine();
         if (input!=null)
         {
-            return input;
+            return input.toUpperCase();
         }
 
         System.out.println("no valid input found, returning null");
@@ -63,6 +62,7 @@ public class ParkingUI
     }
     public static int intInput(String prompt) // Allows only positive integers
     {
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
 
         int input = -1;
@@ -84,18 +84,16 @@ public class ParkingUI
             {
 
                 scanner.nextLine(); //clear scanner
-                System.out.println("invalid input.");
-                break;
+                System.out.println("invalid input, only positive integers allowed.");
+
             }
 
         }
 
-        System.out.println("no valid input found, returning null");
-        scanner.nextLine(); //clear scanner
-        return -1;
     }
     public static boolean booleanInput(String prompt)
     {
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
 
@@ -122,6 +120,7 @@ public class ParkingUI
     }
     public static int pickYear()
     {
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         int currentYear= LocalDate.now().getYear();
         int input =-1;

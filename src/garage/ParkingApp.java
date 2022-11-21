@@ -1,6 +1,6 @@
 package garage;
 
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class ParkingApp
@@ -12,22 +12,27 @@ public class ParkingApp
         Scanner scanner = new Scanner(System.in);
         Garage myGarage = new Garage(20);
         Garage outSideQueue = new Garage(10);
+        //Testdata
+        System.out.println("Creating test-subjects..##################");
         Bus testBus = new Bus("Grey","Diesel","Public transport",0,false);
         Car testCar = new Car("Orange","Electric","Sport",true,true);
         Motorcycle testMotorcycle = new Motorcycle("Red","4-stroke","Enduro",false);
+        Motorcycle testMotorcycle1 = new Motorcycle("Red","4-stroke","Enduro",false);
 
-        System.out.println("Creating park-able test-subjects..##################");
         outSideQueue.parkVehicle(testBus,true);
         outSideQueue.parkVehicle(testCar,true);
         outSideQueue.parkVehicle(testMotorcycle,true);
+        myGarage.parkVehicle(testMotorcycle1,true);
         System.out.println("#########################################");
-
+        //Testdata
         String menu = "What would you like to do?"
                 + "\n1: Create a vehicle."
                 + "\n2: Park a vehicle."
                 + "\n3: Un-park a vehicle."
                 + "\n4: Show vehicles in queue for parking"
-                + "\n5: Show vehicles in the parking lot"
+                + "\n5: Show vehicles in the Garage"
+                + "\n6: Find vehicles by their type in the Garage"
+                + "\n7: Find vehicles by their registration number in the Garage"
                 + "\n0: Exit";
 
         int input;
@@ -36,6 +41,7 @@ public class ParkingApp
 
         while (true)
         {
+            System.out.println();
             ParkingUI.parkingMenu(menu);
             if (scanner.hasNextInt())
             {
@@ -62,28 +68,43 @@ public class ParkingApp
                 case 2:// Park vehicle
                     try
                     {
-                        outSideQueue.listVehicles();
+                        if (!outSideQueue.listVehicles())
+                        {
+                            break;
+                        }
+
+                        scanner.nextLine();
                         String regNo = ParkingUI.stringInput("Enter Reg No");
                         Vehicle vehicleToPark = outSideQueue.getVehicleByRegNo(regNo);
                         if (vehicleToPark==null)
                         {
                             System.out.println("Invalid RegNo");
+
                             break;
                         }
-                        myGarage.parkVehicle(vehicleToPark,false);
-                        outSideQueue.unParkVehicle(vehicleToPark);
+                        else
+                        {
+                            myGarage.parkVehicle(vehicleToPark,false);
+                            outSideQueue.unParkVehicle(vehicleToPark);
+                        }
                     }
                     catch (Exception e) {System.out.println(genericError);System.out.println(e.toString());}
                     break;
                 case 3:// Un-park vehicle
                     try
                     {
+                        if (!myGarage.listVehicles())
+                        {
+                            break;
+                        }
                         Vehicle vehicle = myGarage.getVehicleByRegNo(ParkingUI.stringInput("Enter the registration number of the vehicle"));
                         if (vehicle==null)
                         {
                             System.out.println("Invalid RegNo");
                             break;
                         }
+                        System.out.println("Here is the "+vehicle.color+" "+vehicle.type+" ");
+                        System.out.println();
                         myGarage.unParkVehicle(vehicle);
                     }
                     catch (Exception e) {System.out.println(genericError);System.out.println(e.toString());}
@@ -101,6 +122,33 @@ public class ParkingApp
                         myGarage.listVehicles();
                     }
                     catch (Exception e) {System.out.println(genericError);System.out.println(e.toString());}
+
+                    break;
+                case 6:// Find vehicles in parking  by type
+                    try
+                    {
+                        String searchQuery = ParkingUI.stringInput("Enter the type of the vehicle you are looking for");
+                        myGarage.listVehiclesByType(searchQuery);
+                    }
+                    catch (Exception e) {System.out.println(genericError);System.out.println(e.toString());}
+
+                    break;
+                case 7:// Find vehicles in parking  by type
+                    //try
+                    //{
+                        String searchQuery = ParkingUI.stringInput("Enter the registration number of the vehicle you are looking for");
+                        Vehicle foundVehicle =myGarage.getVehicleByRegNo(searchQuery);
+                    if (foundVehicle != null)
+                    {
+                        System.out.println(foundVehicle);
+                    }
+                    else
+                    {
+                        System.out.println("Could not find a vehicle with that registration number.");
+                    }
+                    System.out.println();
+                   // }
+                  //  catch (Exception e) {System.out.println(genericError);System.out.println(e.toString());}
 
                     break;
                 case 0:// Exit.

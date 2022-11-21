@@ -1,5 +1,7 @@
 package garage;
 
+import java.util.List;
+
 public class Garage
 {
 
@@ -14,7 +16,6 @@ public class Garage
     public int getAvailableSpot()
     {
         int availableSpot =-1;
-        for (Vehicle vehicle: parkingLot )
             for (int i = 0; i < parkingLot.length; i++)
             {
                 if (parkingLot[i] == null)
@@ -32,8 +33,7 @@ public class Garage
     {
         for (Vehicle vehicle: parkingLot)
         {
-            if (vehicle ==null) {break;}
-            if (vehicle.regNo.equals(regNo))
+            if (vehicle!=null && vehicle.regNo.equals(regNo.toUpperCase()))
             {
                 return  vehicle;
             }
@@ -50,11 +50,10 @@ public class Garage
     }
     public void unParkVehicle(Vehicle vehicle)
     {
-        for (int i = 0; i < this.parkingLot.length; i++)
+       for (int i = 0; i < this.parkingLot.length; i++)
         {
-            if (this.parkingLot[i].equals(vehicle))
+            if (this.parkingLot[i]!=null && this.parkingLot[i].equals(vehicle))
             {
-                //System.out.println("Here is the "+vehicle.getColor()+" "+vehicle.getType()+" with RegNo:"+vehicle.getRegNo());
                 this.parkingLot[i] = null;
                 return;
             }
@@ -63,7 +62,7 @@ public class Garage
 
 
     }
-    public void listVehicles ()
+    public boolean listVehicles ()
     {
         System.out.println("Available vehicles:");
 
@@ -81,9 +80,30 @@ public class Garage
         if (count <1)
         {
             System.out.println("### No vehicles was found ###");
+            return false;
         }
 
+        return true;
+    }
 
+    public void listVehiclesByType (String type)
+    {
+        int searchCount = 0;
+        if (this.parkingLot == null)
+        {
+            System.out.println("### No vehicles in the parking lot###");
+        }
+        for (Vehicle vehicle:this.parkingLot)
+        {
+            if (vehicle !=null && vehicle.type.toUpperCase().equals(type))
+            {
+                searchCount++;
+                System.out.println(vehicle);
+
+            }
+        }
+        System.out.println("End of list, found "+searchCount+" result(s)");
+        System.out.println();
     }
 
 

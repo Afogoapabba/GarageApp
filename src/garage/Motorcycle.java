@@ -18,6 +18,7 @@ public class Motorcycle extends RoadLegalVehicle
     {
     }
 
+
     @Override
     public String toString()
     {
